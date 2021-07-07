@@ -1,0 +1,263 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	//color: white;
+}
+ 
+body {
+	background-image: url('https://photo.boltai.com/wp-content/uploads/sites/11/2019/11/02.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+  max-height: max-content;
+}
+#container {
+	width: 800px;
+	height: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+#yozuv-qismi {
+	width: 50%;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+#suggestions::placeholder {
+  color:wheat;
+}
+
+#input-qismi {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
+	height: 50%;
+}
+
+#rasm {
+	display: flex;
+	width: 500px;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0;
+}
+input {
+	padding: 10px;
+	border-radius: 20px;
+	outline: none;
+	border: 2px solid blue;
+}
+#joylashuv{
+	font-size: 30px;
+	margin-bottom: 5px;
+}
+
+#daraja,#darajaF,#fahr,#chiz{
+	font-size: 60px;
+}
+#darajaF {
+	opacity: 0.6;
+	margin-left: 7px;
+}
+
+#darajaF:hover{
+	cursor: pointer;
+}
+#fahr:hover{
+	cursor: pointer;
+}
+#joyla {
+	text-align: center;
+	font-weight: 700;
+}
+#clear,#humidity,#pressere,#wind {
+	margin-top: 10px;
+}
+
+#bugungi_kun {
+	text-align: center;
+}
+
+main {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.suggestion-box {
+  width: 90%;
+  max-width: 300px;
+  position: relative;
+}
+
+.suggestion-box input {
+  background-color: rgba(1, 1, 1, 0.3);
+  color: white;
+  padding: 15px;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  border-radius: 3px;
+  width: 100%;
+  transition: width .3s;
+}
+
+.suggestion-input {
+  position: relative;
+}
+
+.suggestion-input input, .suggestion-input .loading {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.loader {
+  width: var(--loader-size);
+  height: var(--loader-size);
+  border: 4px solid white;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  background-color: transparent;
+  border-radius: 50%;
+  animation: rotate 1.5s linear infinite;
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s .15s;
+}
+
+.suggestion-input.loading input{
+  width: calc(100% - var(--loader-size) - 5px);
+}
+
+.suggestion-input.loading .loader {
+  opacity: 1;
+}
+
+.suggestion-list {
+  background-color: rgba(1, 1, 1, .15);
+  position: absolute;
+  top: var(--loader-size);
+  left: 0;
+  right: 0;
+  border-radius: 3px;
+  transition: transform .3s, opacity .3s;
+  transform: translateY(0px);
+  opacity: 0;
+  max-height: calc(var(--loader-size) * 4);
+  overflow: auto;
+}
+
+.suggestion-list.displayed {
+  opacity: 1;
+  transform: translateY(5px);
+}
+
+.suggestion-list .suggestion {
+  height: var(--loader-size);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  color: white;
+  transition: background-color .3s;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 40px;
+}
+
+.suggestion.error {
+  cursor: initial;
+  color: gray;
+}
+
+.suggestion > img {
+  height: var(--loader-size);
+  position: absolute;
+  right: 15px;
+  top: 0;
+  transform: scale(.3);
+  transform-origin: right;
+}
+
+.suggestion:not(.error):hover {
+  background-color: rgba(1, 1, 1, .4);
+  border-radius: 3px;
+}
+
+#reset {
+  width: calc(var(--loader-size));
+  height: calc(var(--loader-size));
+  background-color: rgba(1, 1, 1, .3);
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  border-radius: 50%;
+  border: 2px solid gray;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  z-index: 3;
+  transform: scale(0);
+  transition: transform .3s;
+}
+
+#reset.displayed {
+  transform: scale(.5);
+}
+
+#reset::before, #reset::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  background-color: gray;
+  top: 0;
+}
+
+#reset::before {
+  transform-origin: top left;
+  transform: rotate(45deg) translateX(22px);
+  left: 0;
+}
+
+#reset::after {
+  right: 0;
+  transform-origin: bottom right;
+  transform: rotate(-45deg) translateX(-21px);
+}
+
+#reset:hover {
+  border-color: white;
+}
+
+#reset:hover::after, #reset:hover::before {
+  background-color: white;
+}
+
+@keyframes rotate {
+  0% {
+    transform: scale(.5) rotateZ(0deg);
+  }
+  100% {
+    transform: scale(.5) rotateZ(360deg);
+  }
+}
